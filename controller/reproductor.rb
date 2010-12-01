@@ -35,11 +35,8 @@ class Reproductor
       content = File.read(File.join(File.dirname(__FILE__), "list.txt"))
       v = content.split("\n")
       
-      for i in v        
-        
+      for i in v
         song = Song.new(i)        
-        
-        
         AudioInfo.open(i) do |audio|
           song.artist = audio.artist
           song.title = audio.title
