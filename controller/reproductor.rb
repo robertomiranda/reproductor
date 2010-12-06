@@ -1,5 +1,4 @@
 require "rubygems"
-require "audioinfo"
 require "../model/song"
 require "../model/song_list"
 
@@ -36,14 +35,9 @@ class Reproductor
       v = content.split("\n")
       
       for i in v
-        song = Song.new(i)        
-        AudioInfo.open(i) do |audio|
-          song.artist = audio.artist
-          song.title = audio.title
-          song.album = audio.album          
-          song.tracknum = audio.tracknum
-        end
-       @songlist.add(song)
+        song = Song.new(i)
+        song.read_info        
+        @songlist.add(song)
       end
       
     end
